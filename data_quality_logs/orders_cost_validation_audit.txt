@@ -1,0 +1,17 @@
+============================================================
+DATA ENGINEERING AUDIT: RAW_ORDERS FINANCIAL COST VALIDATION
+============================================================
+
+QUERY EXECUTED:
+SELECT
+  COUNT(*) AS cost_mismatch_count 
+FROM `ecommerce_profitability_dw.raw_orders` 
+WHERE ROUND(product_cost + shipping_cost + transaction_fee + platform_fee, 2) <> ROUND(total_costs, 2);
+
+
+OUTPUT DATA GRID RESULT:
++---------------------+
+| cost_mismatch_count |
++---------------------+
+|                   0 |
++---------------------+

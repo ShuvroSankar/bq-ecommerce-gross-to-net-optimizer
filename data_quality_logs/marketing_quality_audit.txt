@@ -1,0 +1,24 @@
+============================================================
+DATA ENGINEERING AUDIT: RAW_MARKETING_SPEND DATA COMPLETENESS
+============================================================
+
+QUERY EXECUTED:
+SELECT
+  COUNT(CASE WHEN month IS NULL THEN 1 END) AS null_month,
+  COUNT(CASE WHEN TRIM(platform) = "" THEN 1 END) AS empty_platform,
+  COUNT(CASE WHEN spend <= 0 OR spend IS NULL THEN 1 END) AS empty_spend,
+  COUNT(CASE WHEN impressions <= 0 OR impressions IS NULL THEN 1 END) AS empty_impressions,
+  COUNT(CASE WHEN clicks <= 0 OR clicks IS NULL THEN 1 END) AS empty_clicks,
+  COUNT(CASE WHEN conversions <= 0 OR conversions IS NULL THEN 1 END) AS empty_conversions,
+  COUNT(CASE WHEN revenue_attributed <= 0 OR revenue_attributed IS NULL THEN 1 END) AS empty_revenue_attributed,
+  COUNT(CASE WHEN cpc <= 0 OR cpc IS NULL THEN 1 END) AS empty_cpc,
+  COUNT(CASE WHEN roas <= 0 OR roas IS NULL THEN 1 END) AS empty_roas
+FROM `ecommerce_profitability_dw.raw_marketing_spend`;
+
+
+OUTPUT DATA GRID RESULT:
++------------+----------------+-------------+-------------------+--------------+-------------------+--------------------------+-----------+------------+
+| null_month | empty_platform | empty_spend | empty_impressions | empty_clicks | empty_conversions | empty_revenue_attributed | empty_cpc | empty_roas |
++------------+----------------+-------------+-------------------+--------------+-------------------+--------------------------+-----------+------------+
+|          0 |              0 |           0 |                 0 |            0 |                 0 |                        0 |         0 |          0 |
++------------+----------------+-------------+-------------------+--------------+-------------------+--------------------------+-----------+------------+

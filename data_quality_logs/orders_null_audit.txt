@@ -1,0 +1,18 @@
+============================================================
+DATA ENGINEERING AUDIT: RAW_ORDERS NULL & EMPTY STRING COMPLETENESS
+============================================================
+
+QUERY EXECUTED:
+SELECT
+  COUNT(CASE WHEN order_id="" THEN 1 END) AS null_order_id,
+  COUNT(CASE WHEN TRIM(channel)="" THEN 1 END) AS null_channel,
+  COUNT(CASE WHEN TRIM(primary_category)="" THEN 1 END) AS null_primary_category
+FROM `ecommerce_profitability_dw.raw_orders`;
+
+
+OUTPUT DATA GRID RESULT:
++---------------+--------------+-----------------------+
+| null_order_id | null_channel | null_primary_category |
++---------------+--------------+-----------------------+
+|             0 |            0 |                     0 |
++---------------+--------------+-----------------------+

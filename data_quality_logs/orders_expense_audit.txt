@@ -1,0 +1,19 @@
+============================================================
+DATA ENGINEERING AUDIT: RAW_ORDERS EXPENSE CONSTRAINTS
+============================================================
+
+QUERY EXECUTED:
+SELECT
+  COUNT(CASE WHEN shipping_cost < 0 THEN 1 END) AS neg_shipping_cost,
+  COUNT(CASE WHEN product_cost < 0 THEN 1 END) AS neg_product_cost,
+  COUNT(CASE platform_fee < 0 THE 1 END) AS neg_platform_fee,
+  COUNT(CASE WHEN transaction_fee < 0 THEN 1 END) AS  neg_transaction_fee, COUNT(CASE WHEN discount_amount  < 0 THEN 1 END) AS  neg_discount_amount 
+FROM `ecommerce_profitability_dw.raw_orders`;
+
+
+OUTPUT DATA GRID RESULT:
++-------------------+------------------+------------------+---------------------+---------------------+
+| neg_shipping_cost | neg_product_cost | neg_platform_fee | neg_transaction_fee | neg_discount_amount |
++-------------------+------------------+------------------+---------------------+---------------------+
+|                 0 |                0 |                0 |                   0 |                   0 |
++-------------------+------------------+------------------+---------------------+---------------------+

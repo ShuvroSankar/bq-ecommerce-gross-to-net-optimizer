@@ -1,0 +1,26 @@
+============================================================
+MARKETING BI AUDIT: ACQUISITION AD PLATFORM EFFICIENCY
+============================================================
+
+QUERY EXECUTED:
+SELECT
+  platform,
+  ROUND((SUM(revenue_attributed)/NULLIF(SUM(spend),0)), 2) AS blended_roas,
+  ROUND((SUM(spend)/NULLIF(SUM(conversions),0)), 2) AS blended_cpa,
+  ROUND((SUM(spend)/NULLIF(SUM(clicks), 0)), 2) AS blended_cpc
+FROM `ecommerce_profitability_dw.raw_marketing_spend`
+GROUP BY platform
+ORDER BY blended_roas, blended_cpa, blended_cpc;
+
+
+OUTPUT DATA GRID RESULT:
++-----------------+--------------+-------------+-------------+
+|    platform     | blended_roas | blended_cpa | blended_cpc |
++-----------------+--------------+-------------+-------------+
+| Email Marketing |         4.81 |       17.86 |        0.94 |
+| Facebook Ads    |        11.45 |        6.27 |        0.32 |
+| Google Ads      |        14.38 |        4.72 |        0.25 |
+| Instagram Ads   |        15.73 |         4.7 |        0.21 |
+| Influencer      |         22.7 |        3.39 |        0.17 |
+| TikTok Ads      |        24.02 |        3.06 |        0.15 |
++-----------------+--------------+-------------+-------------+

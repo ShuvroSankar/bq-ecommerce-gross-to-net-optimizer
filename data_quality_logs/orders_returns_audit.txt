@@ -1,0 +1,17 @@
+============================================================
+DATA ENGINEERING AUDIT: RAW_ORDERS RETURN & REFUND ALIGNMENT
+============================================================
+
+QUERY EXECUTED:
+SELECT
+  COUNT(CASE WHEN returned = FALSE AND refund_amount > 0 THEN 1 END) AS refunded_but_no_return,
+  COUNT(CASE WHEN returned = TRUE AND refund_amount <= 0 THEN 1 END) AS returned_not_refunded
+FROM `ecommerce_profitability_dw.raw_orders`;
+
+
+OUTPUT DATA GRID RESULT:
++-----------------------+-----------------------+
+| returned_not_refunded | refunded_not_returned |
++-----------------------+-----------------------+
+|                     0 |                     0 |
++-----------------------+-----------------------+

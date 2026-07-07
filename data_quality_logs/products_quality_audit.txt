@@ -1,0 +1,23 @@
+============================================================
+DATA ENGINEERING AUDIT: RAW_PRODUCTS CATALOG INVENTORY AUDIT
+============================================================
+
+QUERY EXECUTED:
+SELECT
+  COUNT(CASE WHEN product_id = "" OR product_id IS NULL THEN 1 END) AS null_product_id,
+  COUNT(CASE WHEN TRIM(category) = "" OR category IS NULL THEN 1 END) AS null_category,
+  COUNT(CASE WHEN TRIM(sub_category) = "" OR sub_category IS NULL THEN 1 END) AS null_sub_category,
+  COUNT(CASE WHEN unit_cost <= 0 THEN 1 END) AS invelid_unit_cost,
+  COUNT(CASE WHEN selling_price <= 0 THEN 1 END) AS invelid_selling_price,
+  COUNT(CASE WHEN shipping_cost_per_unit <= 0 THEN 1 END) AS invelid_shipping_cost_per_unit,
+  COUNT(CASE WHEN weight_lbs < 0 THEN 1 END) AS neg_weight_lbs,
+  COUNT(CASE WHEN TRIM(supplier) = "" OR supplier IS NULL THEN 1 END) AS null_supplier
+FROM `ecommerce_profitability_dw.raw_products`;
+
+
+OUTPUT DATA GRID RESULT:
++-----------------+---------------+-------------------+-------------------+-----------------------+--------------------------------+----------------+---------------+
+| null_product_id | null_category | null_sub_category | invelid_unit_cost | invelid_selling_price | invelid_shipping_cost_per_unit | neg_weight_lbs | null_supplier |
++-----------------+---------------+-------------------+-------------------+-----------------------+--------------------------------+----------------+---------------+
+|               0 |             0 |                 0 |                 0 |                     0 |                              0 |              0 |             0 |
++-----------------+---------------+-------------------+-------------------+-----------------------+--------------------------------+----------------+---------------+

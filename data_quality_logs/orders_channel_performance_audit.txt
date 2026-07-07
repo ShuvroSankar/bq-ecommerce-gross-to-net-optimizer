@@ -1,0 +1,27 @@
+============================================================
+BUSINESS INTELLIGENCE AUDIT: SALES CHANNEL UNIT ECONOMICS
+============================================================
+
+QUERY EXECUTED:
+SELECT
+  channel,
+  COUNT(order_id) AS num_orders,
+  ROUND(SUM(net_revenue), 2) AS total_net_revenue,
+  ROUND(SUM(gross_revenue), 2) AS total_gross_revenue,
+  ROUND(SUM(net_revenue) / NULLIF(COUNT(order_id), 0), 2) AS net_aov,
+  ROUND(SUM(gross_revenue) / NULLIF(COUNT(order_id), 0), 2) AS gross_aov,
+  ROUND(AVG(profit), 2) AS avg_profit,
+  ROUND((COUNTIF(returned = True) / NULLIF(COUNT(returned), 0)) * 100, 2) AS return_rate
+FROM `ecommerce_profitability_dw.raw_orders`
+GROUP BY channel;
+
+
+OUTPUT DATA GRID RESULT:
++-----------------+------------+-------------------+---------------------+---------+-----------+------------+-------------+
+|     channel     | num_orders | total_net_revenue | total_gross_revenue | net_aov | gross_aov | avg_profit | return_rate |
++-----------------+------------+-------------------+---------------------+---------+-----------+------------+-------------+
+| Mobile App      |        589 |          71893.39 |            82725.94 |  122.06 |    140.45 |      36.32 |         7.3 |
+| Website         |        795 |          92990.55 |           111165.14 |  116.97 |    139.83 |       31.6 |        7.04 |
+| Marketplace     |        419 |          49505.06 |            57631.44 |  118.15 |    137.55 |       15.4 |        6.44 |
+| Social Commerce |        197 |          21929.37 |            26446.61 |  111.32 |    134.25 |      17.11 |        9.14 |
++-----------------+------------+-------------------+---------------------+---------+-----------+------------+-------------+

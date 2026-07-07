@@ -1,0 +1,29 @@
+============================================================
+BUSINESS INTELLIGENCE AUDIT: CATEGORY PROFIT MARKUP MARGINS
+============================================================
+
+QUERY EXECUTED:
+SELECT
+  primary_category,
+  ROUND(SUM(net_revenue), 2) AS total_revenue_by_category,
+  ROUND(SUM(total_costs), 2) AS total_costs_by_category,
+  ROUND(SUM(profit), 2) AS total_profit_by_category,
+  ROUND(SUM(profit) / NULLIF(SUM(net_revenue),0) * 100, 2) AS profit_margin_by_category
+FROM `ecommerce_profitability_dw.raw_orders`
+GROUP BY primary_category
+ORDER BY primary_category DESC;
+
+
+OUTPUT DATA GRID RESULT:
++------------------+---------------------------+-------------------------+--------------------------+---------------------------+
+| primary_category | total_revenue_by_category | total_costs_by_category | total_profit_by_category | profit_margin_by_category |
++------------------+---------------------------+-------------------------+--------------------------+---------------------------+
+| Toys             |                  33595.68 |                24809.43 |                  8786.25 |                     26.15 |
+| Sports           |                  32329.83 |                 24733.2 |                  7596.63 |                      23.5 |
+| Home & Kitchen   |                  26359.76 |                19671.19 |                  6688.57 |                     25.37 |
+| Food & Beverage  |                  30662.69 |                23070.92 |                  7591.77 |                     24.76 |
+| Electronics      |                  44885.84 |                30912.38 |                 13973.46 |                     31.13 |
+| Clothing         |                  31383.13 |                25110.65 |                  6272.48 |                     19.99 |
+| Books            |                  18847.37 |                16597.58 |                  2249.79 |                     11.94 |
+| Beauty           |                  18254.07 |                15079.19 |                  3174.88 |                     17.39 |
++------------------+---------------------------+-------------------------+--------------------------+---------------------------+
