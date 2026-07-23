@@ -18,7 +18,7 @@ High-level health check across the business:
 - Monthly net profit vs. gross revenue trajectory
 - Product inventory unit economics (gross revenue, material cost, shipping cost, return rate by category)
 - Omnichannel profit vs. platform overhead by channel
-  ![...]
+
   ![Executive Summary](images/Executive%20Summery.png)
 
 ### 2. Marketing ROI
@@ -27,7 +27,7 @@ Evaluates marketing capital efficiency:
 - Sales volume by conversion channel
 - Ad platform performance breakdown (spend, revenue, blended ROAS by platform: Google, Facebook, Influencer, Instagram, TikTok, Email)
 - Monthly ROAS trajectory per platform
-   ![...]
+
   ![Marketing ROI](images/Marketing%20ROI.png)
 
 ### 3. Margin Killers
@@ -36,7 +36,7 @@ Isolates the specific drivers of margin compression:
 - Promotional discount share by channel
 - Channel margin erosion matrix (gross revenue, discounts, platform fees, net profit by channel)
 - Chronological profit compression timeline (gross revenue, discounts, platform fees, net profit over time)
- ![...]
+
   ![Margin Killers](images/Margin%20Killers.png)
 
 ## Tech Stack
